@@ -1,0 +1,25 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    background-color: grey;
+    width: 80%;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.list-container {
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    padding-left: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+button {
+    height: 50%;
+}
