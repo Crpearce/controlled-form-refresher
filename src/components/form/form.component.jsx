@@ -39,7 +39,6 @@ const Form = () => {
     setAllTasks([newTask, ...allTasks])
     setTaskDate('')
     setTaskDesc('')
-    console.log(newTask)
   }
 
   const removeTask = (id) => {
@@ -47,7 +46,21 @@ const Form = () => {
     setAllTasks(newArray)
   }
 
-  console.log(allTasks)
+  const updateComplete = (id) => {
+    const matchingTask = allTasks.find(task => task.id === id)
+    const position = allTasks.indexOf(matchingTask)
+    const changeStatus = {
+      id: matchingTask.id,
+      date: matchingTask.date,
+      desc: matchingTask.desc,
+      completed: !matchingTask.completed
+    }
+    const replacement = allTasks.splice(position, 1, changeStatus)
+    console.log(replacement)
+    if (replacement) {
+      setAllTasks(replacement)
+    }
+  }
 
   return (
     <div className='form-container'>
@@ -73,7 +86,7 @@ const Form = () => {
       </label>
       <button onClick={handleSubmit}> add to list</button>
       <ul className='list-container'>
-        {allTasks.map((task) => {
+        {allTasks?.map((task) => {
           return (
             <li key={task.id}>
               <label>
@@ -82,11 +95,7 @@ const Form = () => {
                 <input
                   type='checkbox'
                   defaultChecked={task.completed}
-                  // onClick={() => removeTask(task.id)}
-                  // value={taskDesc}
-                  // placeholder='Add task'
-                  // onChange={(e) => setTaskDesc(e.target.value)}
-                  // required
+                  onClick={() => updateComplete(task.id)}
                 />
               </label>
               <h3>{task.date}</h3>
