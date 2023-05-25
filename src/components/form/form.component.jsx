@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
+
 import './form.styles.css'
 
 const Form = () => {
   const [taskDate, setTaskDate] = useState('')
   const [taskDesc, setTaskDesc] = useState('')
-  const [newTask, setNewTask] = useState("")
+  const [newTask, setNewTask] = useState('')
   const [allTasks, setAllTasks] = useState([])
 
   const handleSubmit = (e) => {
@@ -20,10 +21,10 @@ const Form = () => {
     setTaskDesc('')
   }
 
-const removeTask = (id) => {
-    const newArray = allTasks.filter(task => task.id !== id)
+  const removeTask = (id) => {
+    const newArray = allTasks.filter((task) => task.id !== id)
     setAllTasks(newArray)
-}
+  }
 
   return (
     <div className='form-container'>
@@ -34,7 +35,6 @@ const removeTask = (id) => {
           type='date'
           value={taskDate}
           onChange={(e) => setTaskDate(e.target.value)}
-          required
         />
       </label>
       <label>
@@ -50,19 +50,28 @@ const removeTask = (id) => {
       </label>
       <button onClick={handleSubmit}> add to list</button>
       <ul className='list-container'>
-        { allTasks.map((task) => {
-            return (
-                <li key={task.id}>
-                <h3>{task.date}</h3>
-                <p>{task.desc}</p>
-                <button onClick={() => removeTask(task.id)}>X</button>
-              </li>
-            )
-        }
-        )
-    }
-    </ul>
-        
+        {allTasks.map((task) => {
+          return (
+            <li key={task.id}>
+                    <label>
+        {' '}
+        Completed:
+        <input
+          type='checkbox'
+          onClick={() => removeTask(task.id)}
+          // value={taskDesc}
+          // placeholder='Add task'
+          // onChange={(e) => setTaskDesc(e.target.value)}
+          // required
+        />
+      </label>
+              <h3>{task.date}</h3>
+              <p>{task.desc}</p>
+              <button onClick={() => removeTask(task.id)}>X</button>
+            </li>
+          )
+        })}
+      </ul>
     </div>
   )
 }
