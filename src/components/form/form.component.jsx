@@ -47,6 +47,7 @@ const Form = () => {
   }
 
   const updateComplete = (id) => {
+    console.log(allTasks)
     const matchingTask = allTasks.find(task => task.id === id)
     const position = allTasks.indexOf(matchingTask)
     const changeStatus = {
@@ -60,6 +61,7 @@ const Form = () => {
     if (replacement) {
       setAllTasks(replacement)
     }
+    setAllTasks(allTasks)
   }
 
   return (
